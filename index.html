@@ -3,15 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <link rel="stylesheet" href="style.css">
-  <title>Calendário Flexível</title>
+  <title>Calendário</title>
 </head>
 <body>
-  
-  <div class="calendar-container" id="calendarContainer"></div>
+  <div class="calendar">
+    <div class="weekdays">
+      <div class="weekday">Dom</div>
+      <div class="weekday">Seg</div>
+      <div class="weekday">Ter</div>
+      <div class="weekday">Qua</div>
+      <div class="weekday">Qui</div>
+      <div class="weekday">Sex</div>
+      <div class="weekday">Sáb</div>
+    </div>
+    <div class="days">
+      <!-- Cards para os números serão adicionados dinamicamente aqui -->
+    </div>
+  </div>
 
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="calendar.mjs"></script>
 </body>
 </html>

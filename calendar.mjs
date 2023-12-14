@@ -1,59 +1,51 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const calendarContainer = document.getElementById('calendarContainer');
-  const today = moment();
-  const selectedDate = moment();
+  const startOfMonth = moment().startOf('month');
+  const diasNoMes = [];
 
-  function renderCalendar(monthToShow) {
-    calendarContainer.innerHTML = '';
-
-    // Container principal
-    const calendarWrapper = document.createElement('div');
-    calendarWrapper.classList.add('calendar-wrapper');
-
-    // Adiciona a linha dos dias da semana
-    const weekdaysElement = document.createElement('div');
-    weekdaysElement.classList.add('weekdays');
-    const startOfMonth = monthToShow.clone().startOf('month'); // Define startOfMonth here
-    for (let i = 0; i < 7; i++) {
-      const weekdayElement = document.createElement('div');
-      weekdayElement.classList.add('weekday');
-      weekdayElement.textContent = startOfMonth.clone().weekday(i).format('ddd');
-      weekdaysElement.appendChild(weekdayElement);
-    }
-    calendarWrapper.appendChild(weekdaysElement);
-
-    // Adiciona os dias do mês
-    const daysOfMonthElement = document.createElement('div');
-    daysOfMonthElement.classList.add('days-of-month');
-    const daysInMonth = monthToShow.daysInMonth(); // Calculate daysInMonth
-    for (let i = 0; i < daysInMonth; i++) {
-      const day = startOfMonth.clone().add(i, 'days');
-      const isToday = day.isSame(today, 'day');
-      const isSelected = day.isSame(selectedDate, 'day');
-
-      const dayElement = document.createElement('div');
-      dayElement.classList.add('day');
-      if (isToday) {
-        dayElement.classList.add('today');
-      }
-      if (isSelected) {
-        dayElement.classList.add('selected');
-      }
-      dayElement.textContent = day.format('D');
-      dayElement.addEventListener('click', function () {
-        selectedDate.year(day.year());
-        selectedDate.month(day.month());
-        selectedDate.date(day.date());
-        renderCalendar(monthToShow);
-      });
-
-      daysOfMonthElement.appendChild(dayElement);
-    }
-    calendarWrapper.appendChild(daysOfMonthElement);
-
-    // Adiciona o container principal ao documento
-    calendarContainer.appendChild(calendarWrapper);
+  // Preencher a array diasNoMes
+  const daysInMonth = startOfMonth.daysInMonth();
+  for (let i = 0; i < daysInMonth; i++) {
+    const day = startOfMonth.clone().add(i, 'days');
+    diasNoMes.push({
+      numero: day.date(),
+      semana: day.format('ddd')
+    });
   }
 
-  renderCalendar(today);
+  // Dividir a array em grupos de 7
+  const semanas = [];
+  while (diasNoMes.length > 0) {
+    semanas.push(diasNoMes.splice(0, 7));
+  }
+
+  // Criar e preencher a tabela HTML
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+  const tbody = document.createElement('tbody');
+
+  // Cabeçalho com os nomes abreviados dos dias da semana
+  const headerRow = document.createElement('tr');
+  const diasDaSemana = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  diasDaSemana.forEach(dia => {
+    const headerCell = document.createElement('th');
+    headerCell.textContent = dia;
+    headerRow.appendChild(headerCell);
+  });
+  thead.appendChild(headerRow);
+
+  semanas.forEach(semana => {
+    const row = document.createElement('tr');
+
+    semana.forEach(dia => {
+      const cell = document.createElement('td');
+      cell.textContent = `${dia.numero} - ${dia.semana}`;
+      row.appendChild(cell);
+    });
+
+    tbody.appendChild(row);
+  });
+
+  table.appendChild(thead);
+  table.appendChild(tbody);
+  document.body.appendChild(table);
 });

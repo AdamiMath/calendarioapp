@@ -1,55 +1,64 @@
-/* Adicione estilos para o container principal */
-.calendar-wrapper {
+body {
+    font-family: 'Arial', sans-serif;
     display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    margin: auto;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
   }
   
-  /* Adicione estilos para a linha dos dias da semana */
+  .calendar {
+    
+    text-align: center;
+  }
+  
   .weekdays {
     display: flex;
     background-color: #f0f0f0;
     font-weight: bold;
   }
   
-  /* Adicione estilos para cada dia da semana */
   .weekday {
     flex: 1;
-    text-align: center;
     padding: 10px;
     border: 1px solid #ccc;
   }
   
-  /* Adicione estilos para os dias do mês */
-  .days-of-month {
+  .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
   }
   
-  /* Adicione estilos para cada dia do mês */
   .day {
-    flex: 1 0 14.28%;
     text-align: center;
     padding: 15px;
     border: 1px solid #ccc;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
   }
   
-  /* Adicione estilos para destacar o dia de hoje */
-  .today {
-    background-color: #c0e4ff;
-  }
-  
-  /* Adicione estilos para destacar o dia selecionado */
-  .selected {
-    background-color: #aaffa8;
-  }
-  
-  /* Adicione efeito de hover nos dias */
   .day:hover {
     background-color: #e6e6e6;
+    transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+  }
+  
+  .today {
+    background-color: #c0e4ff;
+    border: 2px solid #4285f4; /* Borda mais destacada para o dia atual */
+  }
+  
+  .selected {
+    background-color: #aaffa8;
+    border: 2px solid #34a853; /* Borda mais destacada para o dia selecionado */
+  }
+  
+  .sunday {
+    color: #d9534f; /* Cor para destacar os domingos */
+  }
+  
+  .saturday {
+    color: #4285f4; /* Cor para destacar os sábados */
   }
   
