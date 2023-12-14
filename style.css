@@ -1,0 +1,55 @@
+/* Adicione estilos para o container principal */
+.calendar-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  /* Adicione estilos para a linha dos dias da semana */
+  .weekdays {
+    display: flex;
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  
+  /* Adicione estilos para cada dia da semana */
+  .weekday {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Adicione estilos para os dias do mês */
+  .days-of-month {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+  
+  /* Adicione estilos para cada dia do mês */
+  .day {
+    flex: 1 0 14.28%;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Adicione estilos para destacar o dia de hoje */
+  .today {
+    background-color: #c0e4ff;
+  }
+  
+  /* Adicione estilos para destacar o dia selecionado */
+  .selected {
+    background-color: #aaffa8;
+  }
+  
+  /* Adicione efeito de hover nos dias */
+  .day:hover {
+    background-color: #e6e6e6;
+  }
+  

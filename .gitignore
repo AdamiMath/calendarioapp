@@ -1,0 +1,4 @@
+# Arquivo .gitignore
+
+# Dependências desnecessárias
+node_modules/
